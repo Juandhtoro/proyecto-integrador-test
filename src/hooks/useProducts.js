@@ -20,7 +20,7 @@ const useProducts = () => {
 
     const createProduct = async (values) => {
         try {
-            const response = await axios.post("http://localhost:3000/api/products", values);
+            const response = await axios.post("https://mitienda-juan.onrender.com/api/products", values);
             setItem("products", [ ...items.products, response.data.data ]);
         } catch (error) {
             console.error("Error creating product:", error);
@@ -30,7 +30,7 @@ const useProducts = () => {
 
     const updateProduct = async (values) => {
         try {
-            const response = await axios.put(`http://localhost:3000/api/products/${values.id}`, values);
+            const response = await axios.put(`https://mitienda-juan.onrender.com/api/products/${values.id}`, values);
             const updatedProducts = items.products.map((product) =>
                 product.id === values.id ? response.data.data : product,
             );
@@ -43,7 +43,7 @@ const useProducts = () => {
 
     const removeProduct = async (id) => {
         try {
-            await axios.delete(`http://127.0.0.1:3000/api/products/${id}`);
+            await axios.delete(`https://mitienda-juan.onrender.com/api/products/${id}`);
             const productsWithoutThisProduct = items.products.filter((item) => item.id !== id);
             setItem("products", productsWithoutThisProduct);
             removeCartProduct(id);
